@@ -23,4 +23,21 @@ router.post('/', function(req, res) {
     });
 });
 
+router.get('/', function(req, res) {
+    pool.connect(function(err, client, done) {
+        if (err) {
+            res.sendStatus(500);
+        } else {
+            client.query('SELECT * FROM employees;', function(err, result) {
+                done();
+                if (err) {
+                    res.sendStatus(500);
+                } else {
+                    res.send(result.rows);
+                }
+            });
+        }
+    });
+});
+
 module.exports = router;
