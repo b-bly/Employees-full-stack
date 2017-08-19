@@ -1,0 +1,9 @@
+.headings {
+    font-weight: bold;
+    background: skyblue;
+    margin-top: 20px;
+}
+
+.col-md-1 {
+    height: 100vh ;
+}
