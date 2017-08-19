@@ -54,21 +54,23 @@
                 </div>
             </div>
 
-            <div class="col-md-12" ng-repeat="employee in vm.employees">
-                <div class="col-md-2">{{ employee.id }}
-                </div>
-                <div class="col-md-2">{{ employee.first_name }}
-                </div>
-                <div class="col-md-2">{{ employee.last_name }}
-                </div>
-                <div class="col-md-2">{{ employee.job_title }}
-                </div>
-                <div class="col-md-2">{{ employee.annual_salary }}
-                </div>
-                <div class="col-md-2"><button class="btn btn-success" ng-click="vm.putStatus()">{{ employee.status }}
+            <section ng-repeat="employee in vm.employees">
+                <div class="col-md-12" ng-class="employee.status">
+                    <div class="col-md-2">{{ employee.id }}
+                    </div>
+                    <div class="col-md-2">{{ employee.first_name }}
+                    </div>
+                    <div class="col-md-2">{{ employee.last_name }}
+                    </div>
+                    <div class="col-md-2">{{ employee.job_title }}
+                    </div>
+                    <div class="col-md-2">{{ employee.annual_salary }}
+                    </div>
+                    <div class="col-md-2"><button class="btn btn-success" ng-click="vm.putStatus($event)">{{ employee.status }}
                     </button></div>
+                </div>
                 <!-- https://stackoverflow.com/questions/24320237/change-the-text-of-the-button-on-click-using-angular-js -->
-            </div>
+            </section>
         </section>
     </main>
 
