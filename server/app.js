@@ -5,7 +5,7 @@ var port = 5000;
 var employeeRecords = require('./routes/employeeRecords');
 var path = require('path');
 
-app.use(express.static('public'));
+app.use(express.static('./server/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/employeeRecords', employeeRecords);

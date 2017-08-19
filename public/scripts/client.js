@@ -7,11 +7,16 @@ app.controller('EmployeeController', ['$http', function($http) {
     var self = this;
     self.employees = [];
 
-    self.newEmployee = {};
+    self.postEmployee = function() {
+        $http({
+            method: 'POST',
+            url: '/employeeRecords',
+            data: self.newEmployee
+        }).then(function(response) {
+            console.log('response from post: ', response);
+            //getEmployees();
+    });
+}
 
-    self.createEmployee = function() {
-        console.log('createEmployee called');
-        self.employees.push(angular.copy(self.newEmployee));
-    }
 
 }]);
