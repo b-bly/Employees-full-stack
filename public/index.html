@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Title</title>
+    <title>Employee Records</title>
     <script src="vendors/angular.min.js"></script>
     <script src="scripts/client.js"></script>
     <link rel="stylesheet" type="text/css" href="vendors/bootstrap.min.css">
@@ -38,8 +38,8 @@
         </section>
 
         <section class="container">
-            <div class="col-md-1"></div>
-            <div class="col-md-10 headings">
+
+            <div class="col-md-12 headings">
                 <div class="col-md-2">ID
                 </div>
                 <div class="col-md-2">First Name
@@ -50,10 +50,11 @@
                 </div>
                 <div class="col-md-2">Annual Salary
                 </div>
-
+                <div class="col-md-2">Status
+                </div>
             </div>
-            
-            <div class="col-md-10" ng-repeat="employee in vm.employees">
+
+            <div class="col-md-12" ng-repeat="employee in vm.employees">
                 <div class="col-md-2">{{ employee.id }}
                 </div>
                 <div class="col-md-2">{{ employee.first_name }}
@@ -64,6 +65,9 @@
                 </div>
                 <div class="col-md-2">{{ employee.annual_salary }}
                 </div>
+                <div class="col-md-2"><button class="btn btn-success" ng-click="vm.putStatus()">{{ employee.status }}
+                    </button></div>
+                <!-- https://stackoverflow.com/questions/24320237/change-the-text-of-the-button-on-click-using-angular-js -->
             </div>
         </section>
     </main>
