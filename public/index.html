@@ -66,12 +66,14 @@
                     </div>
                     <div class="col-md-2">{{ employee.annual_salary }}
                     </div>
-                    <div class="col-md-2"><button class="btn btn-success" ng-click="vm.putStatus($event)">{{ employee.status }}
+                    <div class="col-md-2"><button class="btn btn-success" ng-click="vm.putStatus(employee)">{{ employee.status }}
                     </button></div>
                 </div>
                 <!-- https://stackoverflow.com/questions/24320237/change-the-text-of-the-button-on-click-using-angular-js -->
             </section>
         </section>
+        <div>Monthly expendatures: {{ vm.monthlyExpendatures2 }}
+        </div>
     </main>
 
 </body>

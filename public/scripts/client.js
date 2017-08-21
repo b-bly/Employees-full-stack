@@ -7,6 +7,7 @@ app.controller('EmployeeController', ['$http', function ($http) {
     var self = this;
     self.employees;
     self.status = {status: 'active'};
+    self.monthlyExpendatures;
 
     self.getEmployees = function () {
         $http({
@@ -15,6 +16,9 @@ app.controller('EmployeeController', ['$http', function ($http) {
         }).then(function (response) {
             console.log('response from get: ', response);
             self.employees = response.data;
+            self.monthlyExpendatures = response.data.reduce(function(acc, row) {
+                return acc + row.annual_salary;
+            }, 0);
         });
     }
 
@@ -30,15 +34,16 @@ app.controller('EmployeeController', ['$http', function ($http) {
         });
     }
 
-    self.putStatus = function (event) {
+    self.putStatus = function (employee) {
         //console.log('event: ', event.srcElement.innerText);
         //console.log('event: ', event.srcElement.parentElement.parentElement.children[0].innerText);
-        self.status.status = event.srcElement.innerText == 'active' ? 'inactive' : 'active';
-        var id = event.srcElement.parentElement.parentElement.children[0].innerText; //I have a feeling that there's a better way
+        //self.status.status = event.srcElement.innerText == 'active' ? 'inactive' : 'active';
+        //var id = event.srcElement.parentElement.parentElement.children[0].innerText; //I have a feeling that there's a better way
+        console.log(employee);
         $http({
             method: 'PUT',
-            url: '/employeeRecords/put/' + id,
-            data: self.status
+            url: '/employeeRecords/',
+            data: employee
         }).then(function (response) {
             console.log('response from put: ', response);
             self.class = response.data.status;

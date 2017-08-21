@@ -4,6 +4,27 @@ var pool = require('../modules/pool.js');
 
 console.log('employeeRecords is connected');
 
+router.put('/', function (req, res) {
+    var status = req.body.status;
+    var id = req.body.id;
+    console.log(status);
+    console.log('employeeRecords.js put called id: ', id);
+    pool.connect(function (err, client, done) {
+        if (err) {
+            console.log('Error connecting to database', err);
+            res.sendStatus(500);
+        } else {
+            client.query('UPDATE employees SET status=($1) WHERE id=($2);', [status, id]);
+            if (err) {
+                console.log('Error making query: ', err);
+                res.sendStatus(500);
+            } else {
+                res.sendStatus(201);
+            }
+        }
+    });
+});
+
 router.post('/', function (req, res) {
     var newEmployee = req.body;
     console.log('employeeRecords.js post called ');
@@ -42,25 +63,7 @@ router.get('/', function (req, res) {
     });
 });
 
-router.put('/put/:id', function (req, res) {
-    var status = req.body.status;
-    var id = req.params.id;
-    console.log('employeeRecords.js put called id: ', id);
-    pool.connect(function (err, client, done) {
-        if (err) {
-            console.log('Error connecting to database', err);
-            res.sendStatus(500);
-        } else {
-            client.query('UPDATE employees SET status=($1) WHERE id=($2);', [status, id]);
-            if (err) {
-                console.log('Error making query: ', err);
-                res.sendStatus(500);
-            } else {
-                res.sendStatus(201);
-            }
-        }
-    });
-});
+
 
 
 
