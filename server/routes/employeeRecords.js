@@ -33,8 +33,8 @@ router.post('/', function (req, res) {
             console.log('Error connecting to database', err);
             res.sendStatus(500);
         } else {
-            client.query('INSERT INTO employees (first_name, last_name, job_title, annual_salary, status) VALUES ($1, $2, $3, $4, $5);', 
-            [newEmployee.firstName, newEmployee.lastName, newEmployee.jobTitle, newEmployee.anualSalary, 'active']);
+            client.query('INSERT INTO employees (first_name, last_name, job_title, annual_salary, status) VALUES ($1, $2, $3, $4, $5);',
+                [newEmployee.firstName, newEmployee.lastName, newEmployee.jobTitle, newEmployee.anualSalary, 'active']);
             done();
             if (err) {
                 console.log('Error making query: ', err);
@@ -62,9 +62,5 @@ router.get('/', function (req, res) {
         }
     });
 });
-
-
-
-
 
 module.exports = router;
